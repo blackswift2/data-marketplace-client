@@ -1,0 +1,21 @@
+.register-wrapper {
+  background-color: #ffffff;
+  background: url(assets/img/register-background.jpg);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  & > * {
+    height: 100%;
+  }
+}
+.signin {
+  font-weight: bold;
+  font-size: medium;
+}
+.error {
+  color: white;
+  font-weight: bold;
+}
