@@ -1,0 +1,219 @@
+<div class="container-fluid m-t-50">
+  <div class="col-lg-8">
+    <div
+      *ngIf="alertClass && alertMessage"
+      class=" {{ alertClass }} mt-3 text-center"
+      role="alert"
+    >
+      <b> {{ alertMessage }} </b>
+    </div>
+    <div class="card card-default">
+      <div class="card-header">
+        <div class="card-title">CREATE USER</div>
+      </div>
+      <div class="card-body">
+        <pg-progress
+          *ngIf="loading"
+          type="circle"
+          indeterminate="true"
+          class=""
+        ></pg-progress>
+        <h2 class="mw-80">Get started with making new account.</h2>
+        <!-- <p class="fs-16 mw-80 m-b-40">Find your people. Engage your customers. Build your brand. Do it all with Page's
+          UI Framework Platform. Already have an account? <a href="#">Log in</a></p> -->
+        <form
+          id="form-personal"
+          role="form"
+          autocomplete="off"
+          #addUserForm="ngForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="row clearfix">
+            <div class="col-md-6">
+              <div
+                pgFormGroupDefault
+                class="form-group form-group-default required"
+                [class.has-error]="
+                  addUserFormfname.invalid &&
+                  (addUserFormfname.dirty || addUserFormfname.touched)
+                "
+              >
+                <label>First name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fName"
+                  name="fName"
+                  [(ngModel)]="userData.firstName"
+                  #addUserFormfname="ngModel"
+                  required
+                />
+              </div>
+              <div
+                *ngIf="
+                  addUserFormfname.invalid &&
+                  (addUserFormfname.dirty || addUserFormfname.touched)
+                "
+              >
+                <label *ngIf="addUserFormfname.errors.required" class="error"
+                  >This field is required.</label
+                >
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div
+                pgFormGroupDefault
+                class="form-group form-group-default"
+                [class.has-error]="
+                  addUserFormLName.invalid &&
+                  (addUserFormLName.dirty || addUserFormLName.touched)
+                "
+              >
+                <label>Last name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="lastName"
+                  [(ngModel)]="userData.lastName"
+                  #addUserFormLName="ngModel"
+                  required
+                />
+              </div>
+              <div
+                *ngIf="
+                  addUserFormLName.invalid &&
+                  (addUserFormLName.dirty || addUserFormLName.touched)
+                "
+              >
+                <label *ngIf="addUserFormLName.errors.required" class="error"
+                  >This field is required.</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div
+                pgFormGroupDefault
+                class="form-group form-group-default"
+                [class.has-error]="
+                  addUserFormEmail.invalid &&
+                  (addUserFormEmail.dirty || addUserFormEmail.touched)
+                "
+              >
+                <label>Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  placeholder="We’ll send your login details to this address"
+                  [(ngModel)]="userData.email"
+                  #addUserFormEmail="ngModel"
+                  required
+                />
+              </div>
+              <div
+                *ngIf="
+                  addUserFormEmail.invalid &&
+                  (addUserFormEmail.dirty || addUserFormEmail.touched)
+                "
+              >
+                <label *ngIf="addUserFormEmail.errors.required" class="error"
+                  >This field is required.</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="col-md-3 control-label">User Role</label>
+                <div class="col-md-9 d-flex align-items-center">
+                  <!-- <div class="form-check form-check-inline success m-b-0">
+                    <input
+                      type="radio"
+                      checked="checked"
+                      value="Super Admin"
+                      name="userrole"
+                      [(ngModel)]="userData.userRole"
+                      id="Super Admin"
+                    />
+                    <label for="Super Admin">Super Admin</label>
+                  </div> -->
+                  <div class="form-check form-check-inline success m-b-0">
+                    <input
+                      type="radio"
+                      value="Admin"
+                      name="userrole"
+                      [(ngModel)]="userData.userRole"
+                      id="Admin"
+                    />
+                    <label for="Admin">Admin</label>
+                  </div>
+                  <div class="form-check form-check-inline success m-b-0">
+                    <input
+                      type="radio"
+                      value="Staff"
+                      name="userrole"
+                      [(ngModel)]="userData.userRole"
+                      id="Staff"
+                    />
+                    <label for="Staff">Staff</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="col-md-3 control-label">Account Status</label>
+                <div class="col-md-9 d-flex align-items-center">
+                  <div class="form-check form-check-inline success m-b-0">
+                    <input
+                      type="radio"
+                      checked="checked"
+                      value="Active"
+                      name="accountstatus"
+                      [(ngModel)]="userData.status"
+                      id="Active"
+                    />
+                    <label for="Active">Active</label>
+                  </div>
+                  <div class="form-check form-check-inline success m-b-0">
+                    <input
+                      type="radio"
+                      value="Pending"
+                      name="accountstatus"
+                      [(ngModel)]="userData.status"
+                      id="Pending"
+                    />
+                    <label for="Pending">Inactive</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row m-t-25">
+            <div class="col-xl-6 p-b-10">
+              <p class="small-text hint-text">
+                By clicking the "Submit Account!" button, you are creating a
+                Data MarketPlace account, and you agree to
+                <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.
+              </p>
+            </div>
+            <div class="col-xl-6">
+              <button
+                class="btn btn-primary pull-right btn-lg btn-block"
+                type="submit"
+                [class.disabled]="addUserForm.invalid"
+              >
+                Submit Account
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
 //Layouts
 import {
   CondensedComponent,
@@ -11,761 +11,777 @@ import {
   BlankCorporateComponent,
   BlankSimplywhiteComponent,
   DemoComponent,
-} from "./@pages/layouts";
+} from './@pages/layouts';
 
 //Sample Pages
-import { CondensedDashboardComponent } from "./dashboard/condensed/dashboard.component";
-import { SimplyWhiteDashboardComponent } from "./dashboard/simplywhite/dashboard.component";
-import { CasualDashboardComponent } from "./dashboard/casual/dashboard.component";
-import { CorporateDashboardComponent } from "./dashboard/corporate/dashboard.component";
-import { ExecutiveDashboardComponent } from "./dashboard/executive/dashboard.component";
-import { CardsComponentPage } from "./cards/cards.component";
-import { ViewsPageComponent } from "./views/views.component";
-import { ChartsComponent } from "./charts/charts.component";
-import { SocialComponent } from "./social/social.component";
-import { AuthGuard } from "./helpers";
+import { CondensedDashboardComponent } from './dashboard/condensed/dashboard.component';
+import { SimplyWhiteDashboardComponent } from './dashboard/simplywhite/dashboard.component';
+import { CasualDashboardComponent } from './dashboard/casual/dashboard.component';
+import { CorporateDashboardComponent } from './dashboard/corporate/dashboard.component';
+import { ExecutiveDashboardComponent } from './dashboard/executive/dashboard.component';
+import { CardsComponentPage } from './cards/cards.component';
+import { ViewsPageComponent } from './views/views.component';
+import { ChartsComponent } from './charts/charts.component';
+import { SocialComponent } from './social/social.component';
+import { AuthGuard } from './helpers';
 
-import { ManageTeamsComponent } from "./admin/manage-teams/manage-teams.component";
+import { ManageTeamsComponent } from './admin/manage-teams/manage-teams.component';
+import { AddUserComponent } from './admin/add-user/add-user.component';
+import { ManageUserComponent } from './admin/manage-user/manage-user.component';
+
 export const AppRoutes: Routes = [
   {
-    path: "",
-    redirectTo: "auth",
-    pathMatch: "full",
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full',
   },
   {
-    path: "auth",
+    path: 'auth',
     component: BlankComponent,
     children: [
       {
-        path: "",
-        loadChildren: "./session/session.module#SessionModule",
+        path: '',
+        loadChildren: './session/session.module#SessionModule',
       },
     ],
   },
 
   {
-    path: "home",
+    path: 'home',
     canActivate: [AuthGuard],
     component: CondensedComponent,
     children: [
       {
-        path: "dashboard",
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+      {
+        path: 'dashboard',
         component: CondensedDashboardComponent,
       },
       {
-        path: "manageTeams",
+        path: 'manageTeams',
         component: ManageTeamsComponent,
       },
-    ],
-  },
-  {
-    path: "condensed",
-    component: CondensedComponent,
-    children: [
       {
-        path: "extra",
-        loadChildren: "./extra/extra.module#ExtraModule",
+        path: 'adduser',
+        component: AddUserComponent,
+      },
+      {
+        path: 'manageUsers',
+        component: ManageUserComponent,
       },
     ],
   },
   {
-    path: "condensed",
+    path: 'condensed',
     component: CondensedComponent,
     children: [
       {
-        path: "layouts",
-        loadChildren: "./layouts/layouts.module#LayoutPageModule",
+        path: 'extra',
+        loadChildren: './extra/extra.module#ExtraModule',
       },
     ],
   },
   {
-    path: "condensed",
+    path: 'condensed',
+    component: CondensedComponent,
+    children: [
+      {
+        path: 'layouts',
+        loadChildren: './layouts/layouts.module#LayoutPageModule',
+      },
+    ],
+  },
+  {
+    path: 'condensed',
     component: BlankComponent,
     children: [
       {
-        path: "session",
-        loadChildren: "./session/session.module#SessionModule",
+        path: 'session',
+        loadChildren: './session/session.module#SessionModule',
       },
     ],
   },
   {
-    path: "condensed",
+    path: 'condensed',
     component: CondensedComponent,
     children: [
       {
-        path: "forms",
-        loadChildren: "./forms/forms.module#FormsPageModule",
+        path: 'forms',
+        loadChildren: './forms/forms.module#FormsPageModule',
       },
     ],
   },
   {
-    path: "condensed",
+    path: 'condensed',
     component: CondensedComponent,
     children: [
       {
-        path: "builder",
-        loadChildren: "./builder/builder.module#BuilderModule",
+        path: 'builder',
+        loadChildren: './builder/builder.module#BuilderModule',
       },
     ],
   },
   {
-    path: "condensed",
+    path: 'condensed',
     component: CondensedComponent,
     children: [
       {
-        path: "ui",
-        loadChildren: "./ui/ui.module#UiModule",
+        path: 'ui',
+        loadChildren: './ui/ui.module#UiModule',
       },
     ],
   },
   {
-    path: "condensed",
+    path: 'condensed',
     component: CondensedComponent,
     children: [
       {
-        path: "email",
-        loadChildren: "./email/email.module#EmailModule",
+        path: 'email',
+        loadChildren: './email/email.module#EmailModule',
       },
     ],
   },
   {
-    path: "condensed",
+    path: 'condensed',
     component: CondensedComponent,
     children: [
       {
-        path: "social",
+        path: 'social',
         component: SocialComponent,
       },
     ],
   },
   {
-    path: "condensed",
+    path: 'condensed',
     component: CondensedComponent,
     children: [
       {
-        path: "cards",
+        path: 'cards',
         component: CardsComponentPage,
       },
     ],
   },
   {
-    path: "condensed",
+    path: 'condensed',
     component: CondensedComponent,
     children: [
       {
-        path: "views",
+        path: 'views',
         component: ViewsPageComponent,
       },
     ],
   },
   {
-    path: "condensed",
+    path: 'condensed',
     component: CondensedComponent,
     children: [
       {
-        path: "maps",
-        loadChildren: "./maps/maps.module#MapsModule",
+        path: 'maps',
+        loadChildren: './maps/maps.module#MapsModule',
       },
     ],
   },
   {
-    path: "condensed",
+    path: 'condensed',
     component: CondensedComponent,
     children: [
       {
-        path: "tables",
-        loadChildren: "./tables/tables.module#TablesModule",
+        path: 'tables',
+        loadChildren: './tables/tables.module#TablesModule',
       },
     ],
   },
   {
-    path: "condensed",
+    path: 'condensed',
     component: CondensedComponent,
     children: [
       {
-        path: "charts",
+        path: 'charts',
         component: ChartsComponent,
       },
     ],
   },
   //Corporate Layout Styles and Routing
   {
-    path: "corporate",
+    path: 'corporate',
     component: CorporateLayout,
     children: [
       {
-        path: "dashboard",
+        path: 'dashboard',
         component: CorporateDashboardComponent,
       },
     ],
   },
   {
-    path: "corporate",
+    path: 'corporate',
     component: CorporateLayout,
     children: [
       {
-        path: "extra",
-        loadChildren: "./extra/extra.module#ExtraModule",
+        path: 'extra',
+        loadChildren: './extra/extra.module#ExtraModule',
       },
     ],
   },
   {
-    path: "corporate",
+    path: 'corporate',
     component: BlankCorporateComponent,
     children: [
       {
-        path: "session",
-        loadChildren: "./session/session.module#SessionModule",
+        path: 'session',
+        loadChildren: './session/session.module#SessionModule',
       },
     ],
   },
   {
-    path: "corporate",
+    path: 'corporate',
     component: CorporateLayout,
     children: [
       {
-        path: "social",
+        path: 'social',
         component: SocialComponent,
       },
     ],
   },
   {
-    path: "corporate",
+    path: 'corporate',
     component: CorporateLayout,
     children: [
       {
-        path: "forms",
-        loadChildren: "./forms/forms.module#FormsPageModule",
+        path: 'forms',
+        loadChildren: './forms/forms.module#FormsPageModule',
       },
     ],
   },
   {
-    path: "corporate",
+    path: 'corporate',
     component: CorporateLayout,
     children: [
       {
-        path: "layouts",
-        loadChildren: "./layouts/layouts.module#LayoutPageModule",
+        path: 'layouts',
+        loadChildren: './layouts/layouts.module#LayoutPageModule',
       },
     ],
   },
   {
-    path: "corporate",
+    path: 'corporate',
     component: CorporateLayout,
     children: [
       {
-        path: "builder",
-        loadChildren: "./builder/builder.module#BuilderModule",
+        path: 'builder',
+        loadChildren: './builder/builder.module#BuilderModule',
       },
     ],
   },
   {
-    path: "corporate",
+    path: 'corporate',
     component: CorporateLayout,
     children: [
       {
-        path: "ui",
-        loadChildren: "./ui/ui.module#UiModule",
+        path: 'ui',
+        loadChildren: './ui/ui.module#UiModule',
       },
     ],
   },
   {
-    path: "corporate",
+    path: 'corporate',
     component: CorporateLayout,
     children: [
       {
-        path: "email",
-        loadChildren: "./email/email.module#EmailModule",
+        path: 'email',
+        loadChildren: './email/email.module#EmailModule',
       },
     ],
   },
   {
-    path: "corporate",
+    path: 'corporate',
     component: CorporateLayout,
     children: [
       {
-        path: "cards",
+        path: 'cards',
         component: CardsComponentPage,
       },
     ],
   },
   {
-    path: "corporate",
+    path: 'corporate',
     component: CorporateLayout,
     children: [
       {
-        path: "views",
+        path: 'views',
         component: ViewsPageComponent,
       },
     ],
   },
   {
-    path: "corporate",
+    path: 'corporate',
     component: CorporateLayout,
     children: [
       {
-        path: "tables",
-        loadChildren: "./tables/tables.module#TablesModule",
+        path: 'tables',
+        loadChildren: './tables/tables.module#TablesModule',
       },
     ],
   },
   {
-    path: "corporate",
+    path: 'corporate',
     component: CorporateLayout,
     children: [
       {
-        path: "maps",
-        loadChildren: "./maps/maps.module#MapsModule",
+        path: 'maps',
+        loadChildren: './maps/maps.module#MapsModule',
       },
     ],
   },
   {
-    path: "corporate",
+    path: 'corporate',
     component: CorporateLayout,
     children: [
       {
-        path: "charts",
+        path: 'charts',
         component: ChartsComponent,
       },
     ],
   },
   //Simply White Routes
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: SimplyWhiteLayout,
     children: [
       {
-        path: "dashboard",
+        path: 'dashboard',
         component: SimplyWhiteDashboardComponent,
       },
     ],
   },
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: SimplyWhiteLayout,
     children: [
       {
-        path: "extra",
-        loadChildren: "./extra/extra.module#ExtraModule",
+        path: 'extra',
+        loadChildren: './extra/extra.module#ExtraModule',
       },
     ],
   },
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: BlankSimplywhiteComponent,
     children: [
       {
-        path: "session",
-        loadChildren: "./session/session.module#SessionModule",
+        path: 'session',
+        loadChildren: './session/session.module#SessionModule',
       },
     ],
   },
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: SimplyWhiteLayout,
     children: [
       {
-        path: "social",
+        path: 'social',
         component: SocialComponent,
       },
     ],
   },
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: SimplyWhiteLayout,
     children: [
       {
-        path: "forms",
-        loadChildren: "./forms/forms.module#FormsPageModule",
+        path: 'forms',
+        loadChildren: './forms/forms.module#FormsPageModule',
       },
     ],
   },
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: SimplyWhiteLayout,
     children: [
       {
-        path: "layouts",
-        loadChildren: "./layouts/layouts.module#LayoutPageModule",
+        path: 'layouts',
+        loadChildren: './layouts/layouts.module#LayoutPageModule',
       },
     ],
   },
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: SimplyWhiteLayout,
     children: [
       {
-        path: "builder",
-        loadChildren: "./builder/builder.module#BuilderModule",
+        path: 'builder',
+        loadChildren: './builder/builder.module#BuilderModule',
       },
     ],
   },
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: SimplyWhiteLayout,
     children: [
       {
-        path: "ui",
-        loadChildren: "./ui/ui.module#UiModule",
+        path: 'ui',
+        loadChildren: './ui/ui.module#UiModule',
       },
     ],
   },
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: SimplyWhiteLayout,
     children: [
       {
-        path: "email",
-        loadChildren: "./email-light/email.module#EmailLightModule",
+        path: 'email',
+        loadChildren: './email-light/email.module#EmailLightModule',
       },
     ],
   },
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: SimplyWhiteLayout,
     children: [
       {
-        path: "cards",
+        path: 'cards',
         component: CardsComponentPage,
       },
     ],
   },
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: SimplyWhiteLayout,
     children: [
       {
-        path: "views",
+        path: 'views',
         component: ViewsPageComponent,
       },
     ],
   },
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: SimplyWhiteLayout,
     children: [
       {
-        path: "tables",
-        loadChildren: "./tables/tables.module#TablesModule",
+        path: 'tables',
+        loadChildren: './tables/tables.module#TablesModule',
       },
     ],
   },
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: SimplyWhiteLayout,
     children: [
       {
-        path: "maps",
-        loadChildren: "./maps/maps.module#MapsModule",
+        path: 'maps',
+        loadChildren: './maps/maps.module#MapsModule',
       },
     ],
   },
   {
-    path: "simplywhite",
+    path: 'simplywhite',
     component: SimplyWhiteLayout,
     children: [
       {
-        path: "charts",
+        path: 'charts',
         component: ChartsComponent,
       },
     ],
   },
   //Executive
   {
-    path: "executive",
+    path: 'executive',
     component: ExecutiveLayout,
     children: [
       {
-        path: "dashboard",
+        path: 'dashboard',
         component: ExecutiveDashboardComponent,
         data: {
-          title: "dashboard",
+          title: 'dashboard',
         },
       },
     ],
   },
   {
-    path: "executive",
+    path: 'executive',
     component: ExecutiveLayout,
     children: [
       {
-        path: "social",
+        path: 'social',
         component: SocialComponent,
         data: {
-          title: "social",
+          title: 'social',
         },
       },
     ],
   },
   {
-    path: "executive",
+    path: 'executive',
     component: ExecutiveLayout,
     children: [
       {
-        path: "extra",
-        loadChildren: "./extra/extra.module#ExtraModule",
+        path: 'extra',
+        loadChildren: './extra/extra.module#ExtraModule',
       },
     ],
   },
   {
-    path: "executive",
+    path: 'executive',
     component: ExecutiveLayout,
     children: [
       {
-        path: "layouts",
-        loadChildren: "./layouts/layouts.module#LayoutPageModule",
+        path: 'layouts',
+        loadChildren: './layouts/layouts.module#LayoutPageModule',
       },
     ],
   },
   {
-    path: "executive",
+    path: 'executive',
     component: ExecutiveLayout,
     children: [
       {
-        path: "builder",
-        loadChildren: "./builder/builder.module#BuilderModule",
+        path: 'builder',
+        loadChildren: './builder/builder.module#BuilderModule',
       },
     ],
   },
   {
-    path: "executive",
+    path: 'executive',
     component: BlankComponent,
     children: [
       {
-        path: "session",
-        loadChildren: "./session/session.module#SessionModule",
+        path: 'session',
+        loadChildren: './session/session.module#SessionModule',
       },
     ],
   },
   {
-    path: "executive",
+    path: 'executive',
     component: ExecutiveLayout,
     children: [
       {
-        path: "forms",
-        loadChildren: "./forms/forms.module#FormsPageModule",
+        path: 'forms',
+        loadChildren: './forms/forms.module#FormsPageModule',
       },
     ],
   },
   {
-    path: "executive",
+    path: 'executive',
     component: ExecutiveLayout,
     children: [
       {
-        path: "ui",
-        loadChildren: "./ui/ui.module#UiModule",
+        path: 'ui',
+        loadChildren: './ui/ui.module#UiModule',
       },
     ],
   },
   {
-    path: "executive",
+    path: 'executive',
     component: ExecutiveLayout,
     children: [
       {
-        path: "email",
-        loadChildren: "./email/email.module#EmailModule",
+        path: 'email',
+        loadChildren: './email/email.module#EmailModule',
       },
     ],
   },
   {
-    path: "executive",
+    path: 'executive',
     component: ExecutiveLayout,
     children: [
       {
-        path: "cards",
+        path: 'cards',
         component: CardsComponentPage,
         data: {
-          title: "cards",
+          title: 'cards',
         },
       },
     ],
   },
   {
-    path: "executive",
+    path: 'executive',
     component: ExecutiveLayout,
     children: [
       {
-        path: "views",
+        path: 'views',
         component: ViewsPageComponent,
         data: {
-          title: "views",
+          title: 'views',
         },
       },
     ],
   },
   {
-    path: "executive",
+    path: 'executive',
     component: ExecutiveLayout,
     children: [
       {
-        path: "tables",
-        loadChildren: "./tables/tables.module#TablesModule",
+        path: 'tables',
+        loadChildren: './tables/tables.module#TablesModule',
       },
     ],
   },
   {
-    path: "executive",
+    path: 'executive',
     component: ExecutiveLayout,
     children: [
       {
-        path: "maps",
-        loadChildren: "./maps/maps.module#MapsModule",
+        path: 'maps',
+        loadChildren: './maps/maps.module#MapsModule',
         data: {
-          title: "maps",
+          title: 'maps',
         },
       },
     ],
   },
   {
-    path: "executive",
+    path: 'executive',
     component: ExecutiveLayout,
     children: [
       {
-        path: "charts",
+        path: 'charts',
         component: ChartsComponent,
         data: {
-          title: "charts",
+          title: 'charts',
         },
       },
     ],
   },
   //Casual
   {
-    path: "casual",
+    path: 'casual',
     component: CasualLayout,
     children: [
       {
-        path: "dashboard",
+        path: 'dashboard',
         component: CasualDashboardComponent,
       },
     ],
   },
   {
-    path: "casual",
+    path: 'casual',
     component: CasualLayout,
     children: [
       {
-        path: "social",
+        path: 'social',
         component: SocialComponent,
       },
     ],
   },
   {
-    path: "casual",
+    path: 'casual',
     component: CasualLayout,
     children: [
       {
-        path: "builder",
-        loadChildren: "./builder/builder.module#BuilderModule",
+        path: 'builder',
+        loadChildren: './builder/builder.module#BuilderModule',
       },
     ],
   },
   {
-    path: "casual",
+    path: 'casual',
     component: CasualLayout,
     children: [
       {
-        path: "layouts",
-        loadChildren: "./layouts/layouts.module#LayoutPageModule",
+        path: 'layouts',
+        loadChildren: './layouts/layouts.module#LayoutPageModule',
       },
     ],
   },
   {
-    path: "casual",
+    path: 'casual',
     component: CasualLayout,
     children: [
       {
-        path: "extra",
-        loadChildren: "./extra/extra.module#ExtraModule",
+        path: 'extra',
+        loadChildren: './extra/extra.module#ExtraModule',
       },
     ],
   },
   {
-    path: "casual",
+    path: 'casual',
     component: BlankCasualComponent,
     children: [
       {
-        path: "session",
-        loadChildren: "./session/session.module#SessionModule",
+        path: 'session',
+        loadChildren: './session/session.module#SessionModule',
       },
     ],
   },
   {
-    path: "casual",
+    path: 'casual',
     component: CasualLayout,
     children: [
       {
-        path: "forms",
-        loadChildren: "./forms/forms.module#FormsPageModule",
+        path: 'forms',
+        loadChildren: './forms/forms.module#FormsPageModule',
       },
     ],
   },
   {
-    path: "casual",
+    path: 'casual',
     component: CasualLayout,
     children: [
       {
-        path: "ui",
-        loadChildren: "./ui/ui.module#UiModule",
+        path: 'ui',
+        loadChildren: './ui/ui.module#UiModule',
       },
     ],
   },
   {
-    path: "casual",
+    path: 'casual',
     component: CasualLayout,
     children: [
       {
-        path: "email",
-        loadChildren: "./email/email.module#EmailModule",
+        path: 'email',
+        loadChildren: './email/email.module#EmailModule',
       },
     ],
   },
   {
-    path: "casual",
+    path: 'casual',
     component: CasualLayout,
     children: [
       {
-        path: "cards",
+        path: 'cards',
         component: CardsComponentPage,
       },
     ],
   },
   {
-    path: "casual",
+    path: 'casual',
     component: CasualLayout,
     children: [
       {
-        path: "views",
+        path: 'views',
         component: ViewsPageComponent,
       },
     ],
   },
   {
-    path: "casual",
+    path: 'casual',
     component: CasualLayout,
     children: [
       {
-        path: "tables",
-        loadChildren: "./tables/tables.module#TablesModule",
+        path: 'tables',
+        loadChildren: './tables/tables.module#TablesModule',
       },
     ],
   },
   {
-    path: "casual",
+    path: 'casual',
     component: CasualLayout,
     children: [
       {
-        path: "maps",
-        loadChildren: "./maps/maps.module#MapsModule",
+        path: 'maps',
+        loadChildren: './maps/maps.module#MapsModule',
       },
     ],
   },
   {
-    path: "casual",
+    path: 'casual',
     component: CasualLayout,
     children: [
       {
-        path: "charts",
+        path: 'charts',
         component: ChartsComponent,
       },
     ],

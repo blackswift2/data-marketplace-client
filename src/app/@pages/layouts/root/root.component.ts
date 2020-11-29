@@ -1,14 +1,33 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit, OnDestroy, ViewChild, Input, HostListener } from '@angular/core';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  Input,
+  HostListener,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { pagesToggleService } from '../../services/toggler.service';
-import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import {
+  Router,
+  Event,
+  NavigationStart,
+  NavigationEnd,
+  NavigationError,
+} from '@angular/router';
 declare var pg: any;
 
 @Component({
   selector: 'root-layout',
   templateUrl: './root.component.html',
-  styleUrls: ['./root.component.scss']
+  styleUrls: ['./root.component.scss'],
 })
 export class RootLayout implements OnInit, OnDestroy {
   @ViewChild('root', { static: false }) root;
@@ -77,19 +96,19 @@ export class RootLayout implements OnInit, OnDestroy {
 
       //Subscribition List
       this._subscriptions.push(
-        this.toggler.pageContainerClass.subscribe(state => {
+        this.toggler.pageContainerClass.subscribe((state) => {
           this._pageContainerClass = state;
         })
       );
 
       this._subscriptions.push(
-        this.toggler.contentClass.subscribe(state => {
+        this.toggler.contentClass.subscribe((state) => {
           this._contentClass = state;
         })
       );
 
       this._subscriptions.push(
-        this.toggler.bodyLayoutClass.subscribe(state => {
+        this.toggler.bodyLayoutClass.subscribe((state) => {
           if (state) {
             this.extraLayoutClass = state;
             pg.addClass(document.body, this.extraLayoutClass);
@@ -98,19 +117,19 @@ export class RootLayout implements OnInit, OnDestroy {
       );
 
       this._subscriptions.push(
-        this.toggler.Applayout.subscribe(state => {
+        this.toggler.Applayout.subscribe((state) => {
           this.changeLayout(state);
         })
       );
 
       this._subscriptions.push(
-        this.toggler.Footer.subscribe(state => {
+        this.toggler.Footer.subscribe((state) => {
           this._footer = state;
         })
       );
 
       this._subscriptions.push(
-        this.toggler.mobileHorizontaMenu.subscribe(state => {
+        this.toggler.mobileHorizontaMenu.subscribe((state) => {
           this._mobileHorizontalMenu = state;
         })
       );
@@ -225,7 +244,8 @@ export class RootLayout implements OnInit, OnDestroy {
    *   @description Call Horizontal Menu Toggle Service for mobile
    */
   toggleHorizontalMenuMobile() {
-    this._mobileHorizontalMenu = this._mobileHorizontalMenu == true ? false : true;
+    this._mobileHorizontalMenu =
+      this._mobileHorizontalMenu == true ? false : true;
     this.toggler.toggleMobileHorizontalMenu(this._mobileHorizontalMenu);
   }
 

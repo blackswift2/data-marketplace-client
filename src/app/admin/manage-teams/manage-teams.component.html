@@ -99,7 +99,6 @@
                   <strong style="color: crimson;"> {{ value }} </strong>
                   </span>
                   <select
-                    class="form-control"
                     *ngIf="editing[rowIndex + '-status']"
                     (blur)="editing[rowIndex + '-status'] = false"
                     (change)="showConfirmationModal($event, 'status', rowIndex)"

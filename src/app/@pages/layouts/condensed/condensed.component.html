@@ -10,52 +10,97 @@
 <ng-template #contentTpl>
   <!-- PAGE SIDEBAR -->
   <pg-sidebar>
-
     <ng-template #sideBarHeader>
-      <img src="assets/img/logo/logo.svg" alt="logo" class="brand" pgRetina src1x="assets/img/logo/logo.svg"
-        src2x="assets/img/logo/logo.svg" width="100" height="80">
+      <img
+        src="assets/img/logo/logo.svg"
+        alt="logo"
+        class="brand"
+        pgRetina
+        src1x="assets/img/logo/logo.svg"
+        src2x="assets/img/logo/logo.svg"
+        width="100"
+        height="80"
+      />
       <div class="sidebar-header-controls">
-        <button type="button" class="btn btn-icon-link invert sidebar-slide-toggle m-l-20 m-r-10"
-          [class.active]="_menuDrawerOpen" (click)="toggleMenuDrawer()">
+        <button
+          type="button"
+          class="btn btn-icon-link invert sidebar-slide-toggle m-l-20 m-r-10"
+          [class.active]="_menuDrawerOpen"
+          (click)="toggleMenuDrawer()"
+        >
           <i class="pg-icon">chevron_down</i>
         </button>
-        <button type="button"
+        <button
+          type="button"
           class="btn btn-icon-link invert d-lg-inline-block d-xlg-inline-block d-md-inline-block d-sm-none d-none"
-          data-toggle-pin="sidebar" (click)="toggleMenuPin()">
+          data-toggle-pin="sidebar"
+          (click)="toggleMenuPin()"
+        >
           <i class="pg-icon"></i>
         </button>
       </div>
     </ng-template>
     <ng-template #menuItems>
-      <pg-menu-items [Items]="menuLinks">
-      </pg-menu-items>
+      <pg-menu-items [Items]="menuLinks"> </pg-menu-items>
     </ng-template>
   </pg-sidebar>
   <!-- PAGE CONTAINER -->
   <page-container>
     <pg-header [boxed]="_boxed">
       <!-- START MOBILE SIDEBAR TOGGLE -->
-      <a href="javascript:void(0);" class="btn-icon-link toggle-sidebar d-lg-none" (click)="toggleMobileSidebar()">
+      <a
+        href="javascript:void(0);"
+        class="btn-icon-link toggle-sidebar d-lg-none"
+        (click)="toggleMobileSidebar()"
+      >
         <i class="pg-icon">menu</i>
       </a>
 
-        <div style="margin-left: 120px;">
-          <img src="assets/img/logo/logo.png" alt="logo" class="brand" pgRetina src1x="assets/img/logo/logo.png"
-        src2x="assets/img/logo/logo.png" width="40" height="30">
-        </div>
- 
+      <div style="margin-left: 120px">
+        <img
+          src="assets/img/logo/logo.png"
+          alt="logo"
+          class="brand"
+          pgRetina
+          src1x="assets/img/logo/logo.png"
+          src2x="assets/img/logo/logo.png"
+          width="40"
+          height="30"
+        />
+      </div>
+
       <div class="d-flex align-items-center">
         <!-- START User Info-->
         <div class="dropdown pull-right d-lg-block d-none" dropdown>
-          <button class="profile-dropdown-toggle" type="button" dropdownToggle id="profileDropdown"
-            aria-label="profile dropdown">
+          <button
+            class="profile-dropdown-toggle"
+            type="button"
+            dropdownToggle
+            id="profileDropdown"
+            aria-label="profile dropdown"
+          >
             <span class="thumbnail-wrapper d32 circular inline">
-              <img src="assets/img/profiles/avatar.jpg" alt="" pgRetina src1x="assets/img/profiles/avatar.jpg"
-                src2x="assets/img/profiles/avatar_small2x.jpg" width="32" height="32">
+              <img
+                src="assets/img/profiles/avatar.jpg"
+                alt=""
+                pgRetina
+                src1x="assets/img/profiles/avatar.jpg"
+                src2x="assets/img/profiles/avatar_small2x.jpg"
+                width="32"
+                height="32"
+              />
             </span>
           </button>
-          <div class="dropdown-menu dropdown-menu-right profile-dropdown" *dropdownMenu role="menu">
-            <a href="#" class="dropdown-item"><span>Signed in as <br /><b>David Aunsberg</b></span></a>
+          <div
+            class="dropdown-menu dropdown-menu-right profile-dropdown"
+            *dropdownMenu
+            role="menu"
+          >
+            <a href="#" class="dropdown-item"
+              ><span
+                >Signed in as <br /><b>{{ displayName }}</b></span
+              ></a
+            >
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">Your Profile</a>
             <a href="#" class="dropdown-item">Your Activity</a>
@@ -64,9 +109,13 @@
             <a href="#" class="dropdown-item">Features</a>
             <a href="#" class="dropdown-item">Help</a>
             <a href="#" class="dropdown-item">Settings</a>
-            <a href="#" class="dropdown-item">Logout</a>
             <div class="dropdown-divider"></div>
-            <span class="dropdown-item fs-12 hint-text">Last edited by David<br />on Friday at 5:27PM</span>
+            <a
+              href="javascript:void(0)"
+              (click)="logout()"
+              class="dropdown-item"
+              >Logout</a
+            >
           </div>
         </div>
         <!-- END User Info-->
@@ -76,30 +125,37 @@
         </a> -->
       </div>
     </pg-header>
-    <div class="page-content-wrapper {{_pageContainerClass}}">
+    <div class="page-content-wrapper {{ _pageContainerClass }}">
       <!-- START PAGE CONTENT -->
-      <div class="content {{_contentClass}}">
+      <div class="content {{ _contentClass }}">
         <router-outlet></router-outlet>
       </div>
       <!-- END PAGE CONTENT -->
       <!-- START COPYRIGHT -->
       <ng-template [ngIf]="_footer">
-        <div class=" container-fluid container-fixed-lg footer">
+        <div class="container-fluid container-fixed-lg footer">
           <div class="copyright sm-text-center">
             <p class="small no-margin pull-left sm-pull-reset">
               <span class="hint-text">Copyright &copy; 2020</span>&nbsp;<span
-                class="font-montserrat">Toyota</span>.&nbsp;<span class="hint-text">All rights
-                reserved.</span> <span class="sm-block"><a class="m-l-10 m-r-10" href="javascript:void(0)">Terms of
-                  use</a> <span class="muted">|</span> <a class="m-l-10" href="javascript:void(0)">Privacy
-                  Policy</a></span>
+                class="font-montserrat"
+                >Toyota</span
+              >.&nbsp;<span class="hint-text">All rights reserved.</span>
+              <span class="sm-block"
+                ><a class="m-l-10 m-r-10" href="javascript:void(0)"
+                  >Terms of use</a
+                >
+                <span class="muted">|</span>
+                <a class="m-l-10" href="javascript:void(0)"
+                  >Privacy Policy</a
+                ></span
+              >
             </p>
 
             <p class="small no-margin pull-right sm-pull-reset bold">
               Data MartketPlace
             </p>
 
-            <div class="clearfix">
-            </div>
+            <div class="clearfix"></div>
           </div>
         </div>
         <!-- END COPYRIGHT -->

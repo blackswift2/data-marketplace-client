@@ -1,7 +1,7 @@
 <ul class="menu-items p-t-25" [perfectScrollbar]="config" [disabled]="isPerfectScrollbarDisabled">
     <li *ngFor="let item of menuItems" [class.open]="item.toggle ==='open'" >
         <a  href="javascript:;" *ngIf="item.submenu;else singleLink" (click)="toggleNavigationSub($event,item)" [class.detailed]="item.details">
-            <span class="title">{{ item.label }}</span>
+            <span class="">{{ item.label }}</span>
             <span  *ngIf="item.details" class="details">{{item.details}}</span>
             <span  *ngIf="item.submenu" class=" arrow" [class.open]="item.toggle ==='open'"></span>
         </a>

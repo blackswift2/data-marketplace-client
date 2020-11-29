@@ -1,0 +1,166 @@
+<div
+  bsModal
+  #updateStatusConfirmation="bs-modal"
+  class="modal fade stick-up"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="updateStatusConfirmation"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header clearfix">
+        <button
+          type="button"
+          class="close"
+          (click)="updateStatusConfirmation.hide()"
+          aria-hidden="true"
+        >
+          <i class="pg-icon">close</i>
+        </button>
+        <h4 class="p-b-5"><span class="semi-bold">Confirm</span> Update</h4>
+      </div>
+      <div class="modal-body">
+        <p style="font-weight: bold">
+          Are you sure you want to update this user status?
+        </p>
+        <p style="color: red; font-weight: bold">
+          This operation can not be undone.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button
+          id="add-app"
+          type="button"
+          class="btn btn-primary btn-cons"
+          (click)="confirmModal()"
+        >
+          Update
+        </button>
+        <button type="button" class="btn btn-cons" (click)="cancelModal()">
+          Cancel
+        </button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<div class="container-fluid m-t-50">
+  <div
+    *ngIf="alertClass && alertMessage"
+    class=" {{ alertClass }} mt-3 text-center"
+    role="alert"
+  >
+    <b> {{ alertMessage }} </b>
+  </div>
+  <!-- START CONTAINER FLUID -->
+  <pg-container extraHorizontalClass="bg-white" extraClass="bg-white">
+    <!-- START card -->
+    <div class="card card-transparent">
+      <div class="card-header">
+        <div class="card-title"><h2>Manage Your Team Users</h2></div>
+        <div class="pull-right">
+          <div class="col-xs-12">
+            <input
+              type="text"
+              class="form-control pull-right"
+              placeholder="Search"
+              (keyup)="updateFilter($event)"
+            />
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <ngx-datatable
+            #table
+            class="table table-hover"
+            [columns]="columns"
+            [columnMode]="columnModeSetting"
+            [scrollbarH]="scrollBarHorizontal"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [limit]="5"
+            [rows]="teamData"
+          >
+            <ngx-datatable-column name="First Name" prop="firstName">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <strong> {{ value }} </strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Last Name" prop="lastName">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <strong> {{ value }} </strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Email" prop="email">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <strong> {{ value }} </strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Team Name" prop="teamName">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <strong> {{ value }} </strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="User Role" prop="role">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <strong> {{ value }} </strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Team Status" prop="status">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <strong> {{ value }} </strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Created At" prop="createdAt">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <strong> {{ value }} </strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Change Status" prop="status">
+              <ng-template
+                ngx-datatable-cell-template
+                let-rowIndex="rowIndex"
+                let-row="row"
+                let-value="value"
+              >
+                <span
+                  title="Double click to edit"
+                  (click)="editing[rowIndex + '-status'] = true"
+                  *ngIf="!editing[rowIndex + '-status']"
+                >
+                  <strong style="color: crimson"> {{ value }} </strong>
+                </span>
+                <select
+                  *ngIf="editing[rowIndex + '-status']"
+                  (blur)="editing[rowIndex + '-status'] = false"
+                  (change)="showConfirmationModal($event, 'status', rowIndex)"
+                  [value]="value"
+                >
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+              </ng-template>
+            </ngx-datatable-column>
+            <ng-template
+              ngx-datatable-footer-template
+              let-rowCount="rowCount"
+              let-pageSize="pageSize"
+              let-selectedCount="selectedCount"
+              let-curPage="curPage"
+              let-offset="offset"
+            >
+              Showing {{ curPage }} to {{ pageSize }} of {{ rowCount }} entries
+            </ng-template>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+    <!-- END card -->
+  </pg-container>
+  <!-- END CONTAINER FLUID -->
+</div>

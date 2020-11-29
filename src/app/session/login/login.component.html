@@ -1,78 +1,140 @@
-<div class="login-wrapper ">
-	<!-- START Login Background Pic Wrapper-->
-	<div class="bg-pic">
-		<!-- START Background Pic-->
-		<div class="img-holder"  [ngStyle]="{'background':'url(assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg)'}"></div>
-		<!-- START Background Caption-->
-		<div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
-			<h2 class="semi-bold text-white">
-				Data MarketPlace Admin Panel</h2>
-			<h3 class="semi-bold text-white">
-				Register and Make Your Own Team.
-			</h3>
-		</div>
-		<!-- END Background Caption-->
-	</div>
-	<!-- END Login Background Pic Wrapper-->
-	<!-- START Login Right Container-->
-	<div class="login-container bg-white">
-		
-		<div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 sm-p-l-15 sm-p-r-15 sm-p-t-40" style="margin-top: 150px;">
-			<div
-  *ngIf="alertClass && alertMessage"
-  class=" {{ alertClass }} mt-3 text-center"
-  role="alert"
->
-  <b> {{ alertMessage }} </b>
-</div>
-			<!-- START Login Form -->
-			<h1 class="text-center"> Login Here </h1>
-			<pg-progress *ngIf="loading" type="circle" indeterminate="true" class=""></pg-progress>
-			<form class="p-t-15" role="form" #loginForm="ngForm" (ngSubmit)="onSubmit()">
-				<!-- START Form Control-->
-				<div pgFormGroupDefault class="form-group form-group-default" [class.has-error]="email.invalid && (email.dirty || email.touched)">
-				<label>Email</label>
-				<input type="email" placeholder="Enter your email" class="form-control" id="txtemail" name="txtemail" [(ngModel)]="useremail"  #email="ngModel" required>
-				</div>
-				<div *ngIf="email.invalid && (email.dirty || email.touched)" >
-					<label  *ngIf="email.errors.required" class="error" >This field is required.</label>
-				</div>
-				<!-- END Form Control-->
-				<!-- START Form Control-->
-				<div pgFormGroupDefault class="form-group form-group-default" [class.has-error]="loginPassword.invalid && (loginPassword.dirty || loginPassword.touched)">
-					<label>Password</label>
-					<input type="password" class="form-control" placeholder="Credentials" id="password" name="password" [(ngModel)]="password"  #loginPassword="ngModel" required>
-				</div>
-				<div *ngIf="loginPassword.invalid && (loginPassword.dirty || loginPassword.touched)" >
-					<label  *ngIf="loginPassword.errors.required" class="error" >This field is required.</label>
-				</div>
-				<!-- START Form Control-->
-				<div class="row">
-					<div class="col-md-6 d-flex align-items-center justify-content-end">
-						<div class="form-check ">
-							<input type="checkbox" value="1" id="checkbox1">&nbsp;
-							<label for="checkbox1"> Keep Me Signed in</label>
-						</div>
-					</div>
-					<div class="col-md-6 d-flex align-items-center justify-content-end">
-						<a href="javascript:void(0)" class="text-info small">Help? Contact Support</a>
-					</div>
-				</div>
-				<!-- END Form Control-->
-				<button class="btn btn-primary btn-cons m-t-10" type="submit" [class.disabled]="loginForm.invalid">Sign in</button>
-			</form>
-			<!--END Login Form-->
-			<div class="pull-bottom sm-pull-bottom">
-					<div class="col-sm-12 col-md-12 m-b-30 text-center">
-						<!-- <img src="assets/img/logo/logo.svg" alt="logo" pgRetina src1x="assets/img/logo/logo.svg" src2x="assets/img/logo/logo.svg" width="300" height="250"> -->
-						<p>
-							<small>
-								If you don't have an account, please proceed to <a routerLink="/register">Sign Up</a> Page.
-							</small>
-						</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- END Login Right Container-->
+<div class="login-wrapper">
+  <!-- START Login Background Pic Wrapper-->
+  <div class="bg-pic">
+    <!-- START Background Pic-->
+    <div
+      class="img-holder"
+      [ngStyle]="{
+        background:
+          'url(assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg)'
+      }"
+    ></div>
+    <!-- START Background Caption-->
+    <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
+      <h2 class="semi-bold text-white">Data MarketPlace Admin Panel</h2>
+      <h3 class="semi-bold text-white">Register and Make Your Own Team.</h3>
+    </div>
+    <!-- END Background Caption-->
+  </div>
+  <!-- END Login Background Pic Wrapper-->
+  <!-- START Login Right Container-->
+  <div class="login-container bg-white">
+    <div
+      class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 sm-p-l-15 sm-p-r-15 sm-p-t-40"
+      style="margin-top: 150px"
+    >
+      <div
+        *ngIf="alertClass && alertMessage"
+        class=" {{ alertClass }} mt-3 text-center"
+        role="alert"
+      >
+        <b> {{ alertMessage }} </b>
+      </div>
+      <!-- START Login Form -->
+      <h1 class="text-center">Login Here</h1>
+      <pg-progress
+        *ngIf="loading"
+        type="circle"
+        indeterminate="true"
+        class=""
+      ></pg-progress>
+      <form
+        class="p-t-15"
+        role="form"
+        #loginForm="ngForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <!-- START Form Control-->
+        <div
+          pgFormGroupDefault
+          class="form-group form-group-default"
+          [class.has-error]="email.invalid && (email.dirty || email.touched)"
+        >
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="form-control"
+            id="txtemail"
+            name="txtemail"
+            [(ngModel)]="useremail"
+            #email="ngModel"
+            required
+          />
+        </div>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+          <label *ngIf="email.errors.required" class="error"
+            >This field is required.</label
+          >
+        </div>
+        <!-- END Form Control-->
+        <!-- START Form Control-->
+        <div
+          pgFormGroupDefault
+          class="form-group form-group-default"
+          [class.has-error]="
+            loginPassword.invalid &&
+            (loginPassword.dirty || loginPassword.touched)
+          "
+        >
+          <label>Password</label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Credentials"
+            id="password"
+            name="password"
+            [(ngModel)]="password"
+            #loginPassword="ngModel"
+            required
+          />
+        </div>
+        <div
+          *ngIf="
+            loginPassword.invalid &&
+            (loginPassword.dirty || loginPassword.touched)
+          "
+        >
+          <label *ngIf="loginPassword.errors.required" class="error"
+            >This field is required.</label
+          >
+        </div>
+        <!-- START Form Control-->
+        <div class="row">
+          <div class="col-md-6 d-flex align-items-center justify-content-end">
+            <div class="form-check">
+              <input type="checkbox" value="1" id="checkbox1" />&nbsp;
+              <label for="checkbox1"> Keep Me Signed in</label>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex align-items-center justify-content-end">
+            <a href="javascript:void(0)" class="text-info small"
+              >Help? Contact Support</a
+            >
+          </div>
+        </div>
+        <!-- END Form Control-->
+        <button
+          class="btn btn-primary btn-cons m-t-10"
+          type="submit"
+          [class.disabled]="loginForm.invalid"
+        >
+          Sign in
+        </button>
+      </form>
+      <!--END Login Form-->
+      <div class="pull-bottom sm-pull-bottom">
+        <div class="col-sm-12 col-md-12 m-b-30 text-center">
+          <!-- <img src="assets/img/logo/logo.svg" alt="logo" pgRetina src1x="assets/img/logo/logo.svg" src2x="assets/img/logo/logo.svg" width="300" height="250"> -->
+          <p>
+            <small>
+              If you don't have an account, please proceed to
+              <a routerLink="/auth/register">Sign Up</a> Page.
+            </small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END Login Right Container-->
 </div>

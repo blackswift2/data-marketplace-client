@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { User } from "../models";
+import { User } from '../models';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class UserService {
   constructor(private http: HttpClient) {}
 
@@ -17,6 +17,21 @@ export class UserService {
 
   updateTeamStatus(updateData) {
     return this.http.put(`http://localhost:3000/api/updateStatus`, updateData);
+  }
+
+  createUser(userData) {
+    return this.http.post(`http://localhost:3000/api/createUser`, userData);
+  }
+
+  getTeamUsers() {
+    return this.http.get(`http://localhost:3000/api/getTeamUsers`);
+  }
+
+  updateUserStatus(updateData) {
+    return this.http.put(
+      `http://localhost:3000/api/updateUserStatus`,
+      updateData
+    );
   }
 
   delete(id: number) {

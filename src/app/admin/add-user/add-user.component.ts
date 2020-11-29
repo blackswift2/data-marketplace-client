@@ -3,23 +3,23 @@ import { first } from 'rxjs/operators';
 import { UserService } from '../../services';
 
 @Component({
-  selector: 'app-register-page',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: 'app-add-user',
+  templateUrl: './add-user.component.html',
+  styleUrls: ['./add-user.component.scss'],
 })
-export class RegisterPageComponent implements OnInit {
+export class AddUserComponent implements OnInit {
   public userData = {
     firstName: '',
     lastName: '',
-    teamName: '',
     email: '',
-    password: '',
+    userRole: '',
+    status: '',
   };
   public alertClass: string = '';
   public alertMessage: string = '';
   public loading = false;
-  constructor(private UserService: UserService) {}
 
+  constructor(private UserService: UserService) {}
   ngOnInit() {}
 
   onSubmit() {
@@ -34,16 +34,15 @@ export class RegisterPageComponent implements OnInit {
         this.loading = false;
       }
     });
-
     if (this.loading) {
-      this.UserService.register(this.userData)
+      this.UserService.createUser(this.userData)
         .pipe(first())
         .subscribe(
           (data) => {
             this.showAlert(
               'alert alert-success',
-              'We are processing your team, we should respond in 5 businesses days.',
-              10000
+              'User created, user details sent on relevant email along with a password',
+              6000
             );
             this.loading = false;
             Object.keys(this.userData).forEach(
@@ -51,6 +50,7 @@ export class RegisterPageComponent implements OnInit {
             );
           },
           (err) => {
+            console.log(err);
             const message =
               err.error.message || 'Something went wrong, please try again..!';
             this.showAlert('alert alert-danger', message, 4000);
@@ -59,7 +59,6 @@ export class RegisterPageComponent implements OnInit {
         );
     }
   }
-
   /**
    * Show Alert
    * @param alertClass
