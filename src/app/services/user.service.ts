@@ -2,34 +2,35 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { User } from '../models';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
   constructor(private http: HttpClient) {}
 
   getAllTeams() {
-    return this.http.get<User[]>(`http://localhost:3000/api/getAllTeams`);
+    return this.http.get<User[]>(`${environment.apiURL}/api/getAllTeams`);
   }
 
   register(user: User) {
-    return this.http.post(`http://localhost:3000/api/auth/register`, user);
+    return this.http.post(`${environment.apiURL}/api/auth/register`, user);
   }
 
   updateTeamStatus(updateData) {
-    return this.http.put(`http://localhost:3000/api/updateStatus`, updateData);
+    return this.http.put(`${environment.apiURL}/api/updateStatus`, updateData);
   }
 
   createUser(userData) {
-    return this.http.post(`http://localhost:3000/api/createUser`, userData);
+    return this.http.post(`${environment.apiURL}/api/createUser`, userData);
   }
 
   getTeamUsers() {
-    return this.http.get(`http://localhost:3000/api/getTeamUsers`);
+    return this.http.get(`${environment.apiURL}/api/getTeamUsers`);
   }
 
   updateUserStatus(updateData) {
     return this.http.put(
-      `http://localhost:3000/api/updateUserStatus`,
+      `${environment.apiURL}/api/updateUserStatus`,
       updateData
     );
   }

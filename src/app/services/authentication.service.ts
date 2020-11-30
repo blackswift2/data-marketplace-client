@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -21,7 +22,7 @@ export class AuthenticationService {
 
   login(email: string, password: string) {
     return this.http
-      .post<any>(`http://localhost:3000/api/auth/signin`, { email, password })
+      .post<any>(`${environment.apiURL}/auth/signin`, { email, password })
       .pipe(
         map((user) => {
           // login successful if there's a jwt token in the response
