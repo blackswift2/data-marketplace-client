@@ -75,6 +75,11 @@ export const AppRoutes: Routes = [
     ],
   },
   {
+    path: '**',
+    redirectTo: 'auth',
+    pathMatch: 'full',
+  },
+  {
     path: 'condensed',
     component: CondensedComponent,
     children: [
